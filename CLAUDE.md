@@ -9,7 +9,8 @@ pnpm dev          # 启动开发服务器
 pnpm build        # 生产环境构建 (react-router build)
 pnpm preview      # 预览生产构建
 pnpm format       # oxfmt 格式化（写入）
-pnpm check        # oxfmt 格式检查（不写入）
+pnpm lint         # oxlint 静态检查
+pnpm lint:fix     # oxlint 自动修复
 pnpm openapi      # 从 Swagger 文档生成 API 服务代码
 ```
 
@@ -72,8 +73,9 @@ pnpm openapi      # 从 Swagger 文档生成 API 服务代码
 ## Code Style
 
 - **oxfmt** 负责格式化（不做 lint），配置在 `.oxfmtrc.json`
+- **oxlint** 负责静态检查，配置在 `.oxlintrc.json`（生成代码 `app/services/fast-api/**` 已忽略）
 - 单引号、空格缩进
-- 提交时 Husky + lint-staged 自动检查
+- 提交时 Husky + lint-staged 自动检查（`oxlint --fix` → `oxfmt`）
 - 路径别名：`@/` → `app/`，`@config/` → `config/`
 
 ### 命名规范

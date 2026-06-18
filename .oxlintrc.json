@@ -1,0 +1,29 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "import"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn"
+  },
+  "env": {
+    "browser": true,
+    "es2024": true
+  },
+  "settings": {
+    "react": {
+      "version": "19"
+    }
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "eslint/no-underscore-dangle": "off",
+    "typescript/no-explicit-any": "warn",
+    "typescript/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "typescript/consistent-type-imports": ["error"],
+    "react/no-array-index-key": "off",
+    "import/no-unassigned-import": "off"
+  },
+  "ignorePatterns": ["app/services/fast-api/**"]
+}

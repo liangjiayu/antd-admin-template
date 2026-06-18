@@ -7,8 +7,9 @@
     "dev": "react-router dev",
     "build": "react-router build",
     "preview": "vite preview",
-    "check": "oxfmt --check",
     "format": "oxfmt",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
     "openapi": "node config/openapi.js",
     "prepare": "husky"
   },
@@ -48,12 +49,17 @@
     "less": "^4.3.0",
     "lint-staged": "^16.1.2",
     "oxfmt": "latest",
+    "oxlint": "latest",
     "typescript": "~6.0.2",
     "vite": "^8.0.3",
     "vite-plugin-svgr": "^5.2.0"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,json,css}": [
+    "*.{ts,tsx,js,jsx}": [
+      "oxlint --fix",
+      "oxfmt"
+    ],
+    "*.{json,css}": [
       "oxfmt"
     ]
   },
