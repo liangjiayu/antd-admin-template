@@ -8,8 +8,10 @@ import {
 import { App as AntdApp } from 'antd';
 import type React from 'react';
 import { useState } from 'react';
+
 import { ModalActionType } from '@/constants';
 import { FastApiServices } from '@/services';
+
 import { PRIORITY_OPTIONS, STATUS_OPTIONS } from '../constants';
 
 export type TaskConfigModalProps = {
@@ -38,10 +40,7 @@ const TaskConfigModal: React.FC<TaskConfigModalProps> = ({
   const onFinishByForm = async (values: any) => {
     try {
       if (isEdit) {
-        await FastApiServices.Task.updateTask(
-          { id: initialValues?.id },
-          values,
-        );
+        await FastApiServices.Task.updateTask({ id: initialValues?.id }, values);
       } else {
         await FastApiServices.Task.createTask(values);
       }
@@ -91,16 +90,8 @@ const TaskConfigModal: React.FC<TaskConfigModalProps> = ({
         placeholder="请输入负责人"
         rules={[{ required: true }]}
       />
-      <ProFormTextArea
-        label="任务描述"
-        name="description"
-        placeholder="请输入任务描述"
-      />
-      <ProFormDatePicker
-        label="截止时间"
-        name="deadline"
-        placeholder="请选择截止时间"
-      />
+      <ProFormTextArea label="任务描述" name="description" placeholder="请输入任务描述" />
+      <ProFormDatePicker label="截止时间" name="deadline" placeholder="请选择截止时间" />
     </ModalForm>
   );
 };

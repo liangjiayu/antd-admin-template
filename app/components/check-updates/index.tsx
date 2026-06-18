@@ -57,10 +57,7 @@ const CheckUpdates: React.FC<CheckUpdatesProps> = ({
 
   async function getVersionTag() {
     try {
-      if (
-        location.hostname === 'localhost' ||
-        location.hostname === '127.0.0.1'
-      ) {
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
         return null;
       }
       const response = await fetch(checkUpdateUrl, {
@@ -69,9 +66,7 @@ const CheckUpdates: React.FC<CheckUpdatesProps> = ({
         redirect: 'manual',
       });
 
-      return (
-        response.headers.get('etag') || response.headers.get('last-modified')
-      );
+      return response.headers.get('etag') || response.headers.get('last-modified');
     } catch {
       console.error('Failed to fetch version tag');
       return null;
@@ -104,10 +99,7 @@ const CheckUpdates: React.FC<CheckUpdatesProps> = ({
       return;
     }
 
-    timer.current = setInterval(
-      checkForUpdates,
-      checkUpdatesInterval * 60 * 1000,
-    );
+    timer.current = setInterval(checkForUpdates, checkUpdatesInterval * 60 * 1000);
   }
 
   function stop() {

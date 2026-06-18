@@ -1,23 +1,16 @@
 {
   "name": "antd-admin-template",
-  "private": true,
   "version": "2.0.0",
+  "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.33.2",
   "scripts": {
     "dev": "react-router dev",
     "build": "react-router build",
     "preview": "vite preview",
-    "check": "biome check .",
-    "check:fix": "biome check --write .",
-    "format": "biome format --write .",
+    "check": "oxfmt --check",
+    "format": "oxfmt",
     "openapi": "node config/openapi.js",
     "prepare": "husky"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx,json,css}": [
-      "biome check --write --no-errors-on-unmatched"
-    ]
   },
   "dependencies": {
     "@ant-design/icons": "^6.1.1",
@@ -42,7 +35,6 @@
     "zustand": "^5.0.6"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.1.2",
     "@react-router/dev": "^7.13.2",
     "@tailwindcss/vite": "^4.1.10",
     "@tanstack/react-query-devtools": "^5.99.0",
@@ -55,8 +47,15 @@
     "husky": "^9.1.7",
     "less": "^4.3.0",
     "lint-staged": "^16.1.2",
+    "oxfmt": "latest",
     "typescript": "~6.0.2",
     "vite": "^8.0.3",
     "vite-plugin-svgr": "^5.2.0"
-  }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,css}": [
+      "oxfmt"
+    ]
+  },
+  "packageManager": "pnpm@10.33.2"
 }

@@ -3,14 +3,11 @@ import sideMenuConfig from '@config/side-menu-config';
 import sidebarSetting from '@config/sidebar-setting';
 import { useMemo } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router';
+
 import AccessControl from '@/components/access-control';
 import { ThemeMode } from '@/constants';
 import useTitleUpdater from '@/hooks/use-title-updater';
-import {
-  AvatarInfo,
-  Question,
-  ThemeSwitch,
-} from '@/layout/widgets/right-content';
+import { AvatarInfo, Question, ThemeSwitch } from '@/layout/widgets/right-content';
 import { useGlobalStore } from '@/store';
 
 const BasicLayout = () => {

@@ -1,5 +1,6 @@
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 import { generateService } from '@umijs/openapi';
 
 const __filename = fileURLToPath(import.meta.url);

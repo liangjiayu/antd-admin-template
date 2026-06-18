@@ -72,11 +72,7 @@ const AntIconCase = () => {
       type="inner"
       size="small"
       extra={
-        <a
-          href="https://ant-design.antgroup.com/components/icon-cn"
-          target="_blank"
-          rel="noopener"
-        >
+        <a href="https://ant-design.antgroup.com/components/icon-cn" target="_blank" rel="noopener">
           搜索图标
         </a>
       }

@@ -8,9 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 pnpm dev          # 启动开发服务器
 pnpm build        # 生产环境构建 (react-router build)
 pnpm preview      # 预览生产构建
-pnpm format       # Biome 格式化
-pnpm check        # Biome 代码检查
-pnpm check:fix    # Biome 代码检查并自动修复
+pnpm format       # oxfmt 格式化（写入）
+pnpm check        # oxfmt 格式检查（不写入）
 pnpm openapi      # 从 Swagger 文档生成 API 服务代码
 ```
 
@@ -65,13 +64,14 @@ pnpm openapi      # 从 Swagger 文档生成 API 服务代码
 ### 新增路由
 
 新增页面时需要同步修改：
+
 1. `app/routes/` 下新建页面组件，通过 `handle` 导出 `name` 和 `access`
 2. `app/routes.ts` 中添加路由配置
 3. `config/side-menu-config.tsx` 中添加菜单项（图标使用 lucide-react）
 
 ## Code Style
 
-- **Biome** 负责格式化和 lint（非 ESLint/Prettier），配置在 `biome.json`
+- **oxfmt** 负责格式化（不做 lint），配置在 `.oxfmtrc.json`
 - 单引号、空格缩进
 - 提交时 Husky + lint-staged 自动检查
 - 路径别名：`@/` → `app/`，`@config/` → `config/`
@@ -87,4 +87,3 @@ pnpm openapi      # 从 Swagger 文档生成 API 服务代码
 
 - 只写重要的、有意义的注释，避免显而易见的废话注释
 - 辅助工具类函数建议都写注释说明其用途
-

@@ -1,6 +1,5 @@
 import './styles/index.css';
 import './components/icon-font';
-
 import customAntdTheme from '@config/antd-theme';
 import preferences from '@config/preferences';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -11,6 +10,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import { useMemo } from 'react';
 import { Links, Outlet, Scripts, ScrollRestoration } from 'react-router';
+
 import CheckUpdates from '@/components/check-updates';
 import { SITE_APP_TITLE, ThemeMode } from '@/constants';
 import { useNProgress } from '@/hooks';
@@ -68,17 +68,12 @@ export default function Root() {
   }, [themeMode]);
 
   return (
-    <ConfigProvider
-      theme={{ ...customAntdTheme, algorithm: themeAlgorithm }}
-      locale={zhCN}
-    >
+    <ConfigProvider theme={{ ...customAntdTheme, algorithm: themeAlgorithm }} locale={zhCN}>
       <QueryClientProvider client={queryClient}>
         <AntdApp>
           <Outlet />
           {preferences.enableCheckUpdates && (
-            <CheckUpdates
-              checkUpdatesInterval={preferences.checkUpdatesInterval}
-            />
+            <CheckUpdates checkUpdatesInterval={preferences.checkUpdatesInterval} />
           )}
         </AntdApp>
         {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}

@@ -14,13 +14,11 @@ import {
 } from 'antd';
 import dayjs from 'dayjs';
 import { useState } from 'react';
-import {
-  PRIORITY_MAP,
-  STATUS_MAP,
-  STATUS_OPTIONS,
-} from '@/components/crud-table/constants';
+
+import { PRIORITY_MAP, STATUS_MAP, STATUS_OPTIONS } from '@/components/crud-table/constants';
 import { FastApiServices } from '@/services';
 import { refreshQuery } from '@/utils/query-client';
+
 import { TASK_LIST_KEY, useTaskList } from './hooks';
 
 const TaskCard = () => {
@@ -87,37 +85,24 @@ const TaskCard = () => {
                 <Col key={task.id} xs={24} sm={12} md={8} xl={6}>
                   <Card
                     title={task.name}
-                    extra={
-                      <Tag color={priorityConf.color}>{priorityConf.text}</Tag>
-                    }
+                    extra={<Tag color={priorityConf.color}>{priorityConf.text}</Tag>}
                     actions={[
-                      <a
-                        key="delete"
-                        className="text-red-500!"
-                        onClick={() => handleDelete(task)}
-                      >
+                      <a key="delete" className="text-red-500!" onClick={() => handleDelete(task)}>
                         删除
                       </a>,
                     ]}
                   >
                     <div className="space-y-2 text-sm">
                       <div>
-                        <Badge
-                          status={statusConf.status as any}
-                          text={statusConf.text}
-                        />
+                        <Badge status={statusConf.status as any} text={statusConf.text} />
                       </div>
-                      <div className="text-gray-500">
-                        负责人：{task.assignee}
-                      </div>
+                      <div className="text-gray-500">负责人：{task.assignee}</div>
                       <div className="line-clamp-2 h-10 text-gray-500">
                         {task.description || '-'}
                       </div>
-                      <div className="text-gray-400 text-xs">
+                      <div className="text-xs text-gray-400">
                         截止：
-                        {task.deadline
-                          ? dayjs(task.deadline).format('YYYY-MM-DD')
-                          : '-'}
+                        {task.deadline ? dayjs(task.deadline).format('YYYY-MM-DD') : '-'}
                       </div>
                     </div>
                   </Card>

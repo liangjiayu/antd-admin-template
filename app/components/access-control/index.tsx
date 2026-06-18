@@ -1,6 +1,7 @@
 import { Result } from 'antd';
 import type React from 'react';
 import { useMatches } from 'react-router';
+
 import { useAccessStore } from '@/store/access-store';
 
 type AccessControlProps = {
@@ -24,9 +25,7 @@ const AccessControl: React.FC<AccessControlProps> = ({ children }) => {
   });
 
   if (!hasAccess) {
-    return (
-      <Result status="403" title={'403'} subTitle="抱歉，你无权访问该页面" />
-    );
+    return <Result status="403" title={'403'} subTitle="抱歉，你无权访问该页面" />;
   }
 
   return <>{children}</>;

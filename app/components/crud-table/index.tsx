@@ -1,13 +1,11 @@
 import { PlusOutlined } from '@ant-design/icons';
-import {
-  type ActionType,
-  type ProColumns,
-  ProTable,
-} from '@ant-design/pro-components';
+import { type ActionType, type ProColumns, ProTable } from '@ant-design/pro-components';
 import { App as AntdApp, Button, Space } from 'antd';
 import { useRef } from 'react';
+
 import { ModalActionType } from '@/constants';
 import { FastApiServices } from '@/services';
+
 import { useTaskConfigModal } from './components/task-config-modal';
 import { PRIORITY_MAP, STATUS_MAP } from './constants';
 

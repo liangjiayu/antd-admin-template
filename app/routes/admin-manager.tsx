@@ -1,4 +1,5 @@
 import { Alert, Card, Tag, Typography } from 'antd';
+
 import { useAccessStore } from '@/store/access-store';
 
 const { Title, Paragraph, Text } = Typography;
@@ -13,23 +14,14 @@ const AdminManagerPage = () => {
           <Title level={4}>当前权限状态</Title>
           <Paragraph>
             <Text strong>isAdmin：</Text>
-            {access.isAdmin ? (
-              <Tag color="green">有权限</Tag>
-            ) : (
-              <Tag color="red">无权限</Tag>
-            )}
+            {access.isAdmin ? <Tag color="green">有权限</Tag> : <Tag color="red">无权限</Tag>}
           </Paragraph>
           <Paragraph>
-            当前用户的 <Text code>isAdmin</Text>{' '}
-            权限为随机生成，刷新页面可能会变化。
+            当前用户的 <Text code>isAdmin</Text> 权限为随机生成，刷新页面可能会变化。
           </Paragraph>
 
           {access.isAdmin ? (
-            <Alert
-              type="success"
-              title="你拥有管理员权限，可以访问受保护的页面。"
-              showIcon
-            />
+            <Alert type="success" title="你拥有管理员权限，可以访问受保护的页面。" showIcon />
           ) : (
             <Alert
               type="warning"

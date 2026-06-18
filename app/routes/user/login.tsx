@@ -5,15 +5,12 @@ import {
   UserOutlined,
   WeiboCircleOutlined,
 } from '@ant-design/icons';
-import {
-  LoginForm,
-  ProFormCheckbox,
-  ProFormText,
-} from '@ant-design/pro-components';
+import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { Alert, message } from 'antd';
 import { createStyles } from 'antd-style';
 import type React from 'react';
 import { useState } from 'react';
+
 import { SITE_LOGO_URL, ThemeMode } from '@/constants';
 import { useGlobalStore } from '@/store/global-store';
 
@@ -58,18 +55,9 @@ const ActionIcons = ({ isDark }: { isDark: boolean }) => {
   const { styles } = useStyles({ isDark });
   return (
     <>
-      <AlipayCircleOutlined
-        key="AlipayCircleOutlined"
-        className={styles.action}
-      />
-      <TaobaoCircleOutlined
-        key="TaobaoCircleOutlined"
-        className={styles.action}
-      />
-      <WeiboCircleOutlined
-        key="WeiboCircleOutlined"
-        className={styles.action}
-      />
+      <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.action} />
+      <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.action} />
+      <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.action} />
     </>
   );
 };
@@ -129,10 +117,7 @@ const Login: React.FC = () => {
           initialValues={{
             autoLogin: true,
           }}
-          actions={[
-            '其他登录方式 :',
-            <ActionIcons key="icons" isDark={isDark} />,
-          ]}
+          actions={['其他登录方式 :', <ActionIcons key="icons" isDark={isDark} />]}
           onFinish={async (values) => {
             await handleSubmit(values);
           }}
@@ -165,9 +150,7 @@ const Login: React.FC = () => {
               },
             ]}
           />
-          {hasError && (
-            <LoginMessage content={'错误的用户名和密码(admin/123456)'} />
-          )}
+          {hasError && <LoginMessage content={'错误的用户名和密码(admin/123456)'} />}
           <div
             style={{
               marginBottom: 24,

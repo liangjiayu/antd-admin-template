@@ -1,12 +1,5 @@
 import type { MenuDataItem } from '@ant-design/pro-components';
-import {
-  House,
-  LayoutGrid,
-  PencilRuler,
-  Shield,
-  Table2,
-  TriangleAlert,
-} from 'lucide-react';
+import { House, LayoutGrid, PencilRuler, Shield, Table2, TriangleAlert } from 'lucide-react';
 
 const Side_Menu_Config: MenuDataItem[] = [
   {

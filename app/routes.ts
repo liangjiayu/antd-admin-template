@@ -1,9 +1,4 @@
-import {
-  index,
-  layout,
-  type RouteConfig,
-  route,
-} from '@react-router/dev/routes';
+import { index, layout, type RouteConfig, route } from '@react-router/dev/routes';
 
 export default [
   layout('routes/basic-layout.tsx', [
@@ -17,7 +12,5 @@ export default [
     route('exception/500', 'routes/exception/500.tsx'),
     route('*', 'routes/catch-all.tsx'),
   ]),
-  layout('routes/blank-layout.tsx', [
-    route('user/login', 'routes/user/login.tsx'),
-  ]),
+  layout('routes/blank-layout.tsx', [route('user/login', 'routes/user/login.tsx')]),
 ] satisfies RouteConfig;

@@ -1,6 +1,7 @@
 import { MoonOutlined, SunOutlined } from '@ant-design/icons';
 import clsx from 'clsx';
 import { useEffect } from 'react';
+
 import { ThemeMode } from '@/constants';
 import { useGlobalStore } from '@/store';
 

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 import { useGlobalStore } from './global-store';
 
 type AccessState = {

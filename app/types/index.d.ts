@@ -1,4 +1,5 @@
 import type { UIMatch } from 'react-router';
+
 import type { dependencies, devDependencies } from '../../package.json';
 
 type RouteMeta = {

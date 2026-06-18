@@ -1,6 +1,7 @@
 import { LogoutOutlined } from '@ant-design/icons';
 import { Avatar, Dropdown } from 'antd';
 import { useNavigate } from 'react-router';
+
 import { useGlobalStore } from '@/store/global-store';
 
 const AvatarInfo = () => {

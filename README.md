@@ -5,7 +5,7 @@
 开箱即用的中后台前端解决方案，采用了最新的 React19、Vite、TypeScript 等主流技术开发。
 
 [![](https://badgen.net/static/Build%20with/Vite/blue)](https://vite.dev)
-[![](https://badgen.net/static/Checked%20with/Biome/blue)](https://biomejs.dev)
+[![](https://badgen.net/static/Formatted%20with/oxfmt/blue)](https://oxc.rs)
 [![](https://badgen.net/badge/icon/Ant%20Design?icon=https://gw.alipayobjects.com/zos/antfincdn/Pp4WPgVDB3/KDpgvguMpGfqaHPjicRK.svg&label)](https://ant.design/)
 
 ![](http://cdn.liangjiayu.cn/images/admin-preview.png)
@@ -25,7 +25,7 @@
 - 🎨 主题定制：通过简单的配置，即可实现各种主题切换，满足个性化需求。
 - 🔐 权限管理：内置权限管理方案，支持多种权限控制方式，满足各种权限需求。
 - ⚡️ Vite：现代化的前端构建工具，快速冷启动，瞬间热更新。
-- 📋 代码规范：内置 Biome 工具，提供开箱即用的代码检查和格式化。
+- 📋 代码规范：内置 oxfmt 工具，提供开箱即用的代码格式化。
 - 🤖 生成协议：通过 swagger 协议一键生成接口函数，减少重复工作。
 
 ## 安装使用

@@ -38,6 +38,7 @@ app/routes/{modulePath}/
 **重要：`constants.ts` 不是必须的。** 如果模块的字段中没有任何 select 类型（即没有枚举/常量需求），则不要生成 `constants.ts`，也不要在其他文件中导入它。保持模块文件精简。
 
 同时需要修改的文件：
+
 - `app/routes.ts` — 添加路由
 - `config/side-menu-config.tsx` — 添加菜单项
 
