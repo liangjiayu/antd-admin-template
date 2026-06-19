@@ -1,98 +1,22 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Commands
-
-```bash
-pnpm dev          # 启动开发服务器
-pnpm build        # 生产环境构建 (react-router build)
-pnpm preview      # 预览生产构建
-pnpm format       # oxfmt 格式化（写入）
-pnpm lint         # oxlint 静态检查
-pnpm lint:fix     # oxlint 自动修复
-pnpm openapi      # 从 Swagger 文档生成 API 服务代码
-```
-
-## Architecture
-
-基于 React 19 + React Router v7 + Ant Design 6 + Zustand 的后台管理系统。
-
-### 路由与布局
-
-- 路由配置在 `app/routes.ts`，使用 React Router v7 显式配置（非文件约定）
-- 两套布局：`basic-layout`（主后台）和 `blank-layout`（空白布局）
-- 路由通过 `handle` 导出元信息：`name`（页面标题）、`access`（权限 key）
-- `basic-layout` 的 `clientLoader` 负责初始化全局状态和权限
-
-### 状态管理 (Zustand)
-
-- `app/store/global-store.ts` — 用户信息、主题模式，themeMode 持久化到 localStorage
-- `app/store/access-store.ts` — 权限状态（isAdmin、isUser 等），由 `initAccess()` 基于 currentUser 初始化
-
-### API 层
-
-- Axios 实例在 `app/utils/request.ts`，自动处理 401 跳转和错误提示
-- API 服务由 `@umijs/openapi` 自动生成到 `app/services/fast-api/`，不要手动修改
-- OpenAPI 配置在 `config/openapi.js`，数据源为 mock API
-
-### 数据请求 (react-query)
-
-- 工具与 Provider：`app/utils/query-client.ts`（已在 `root.tsx` 挂载）
-- 查询用 `useQuery` 封装 hook，放模块目录（如 `app/routes/task-card/hooks.ts`）
-- Query Key 导出前缀常量：`export const TASK_LIST_KEY = ['task', 'list'] as const`
-- 提交（增删改）写普通 `async` 函数，末尾 `refreshQuery(TASK_LIST_KEY)` 刷新
-- 需要乐观更新、跨组件复用同一变更逻辑时，才使用 `useMutation`
-
-### 权限模型
-
-- 路由级：`handle.access` 指定所需权限 key
-- 组件级：`app/components/access-control/` 包裹受限内容
-- 权限不足显示 403 页面
-
-### 样式
-
-- Tailwind CSS v4 + Ant Design 主题（`config/antd-theme.ts`）
-- 使用 `cn()` 工具函数（clsx + tailwind-merge）合并类名，位于 `app/utils/`
-- 侧边栏配置在 `config/sidebar-setting.ts`，菜单在 `config/side-menu-config.tsx`
-
-### 图标
-
-- 基础场景统一使用 **lucide-react**（菜单图标也用它）
-- lucide 没有的图标：复制一段 svg 封装成组件，约定 `fill/stroke` 用 `currentColor` 并透传 props，用法与 lucide 一致；复用的图标放 `app/components/icons/`（用到时再建目录）
-- `@ant-design/icons` 仅在 antd 组件内部需要时使用，不主动推广
-- 示例见 `app/routes/icon-feature/`
-
-### 组件模式
-
-- 共享组件在 `app/components/`，页面在 `app/routes/`
-- CRUD 页面基于 Pro Components 的 ProTable
-- 使用 `/crud-module-generator` 可快速生成 CRUD 模块
-
-### 新增路由
-
-新增页面时需要同步修改：
-
-1. `app/routes/` 下新建页面组件，通过 `handle` 导出 `name` 和 `access`
-2. `app/routes.ts` 中添加路由配置
-3. `config/side-menu-config.tsx` 中添加菜单项（图标使用 lucide-react）
-
-## Code Style
-
-- **oxfmt** 负责格式化（不做 lint），配置在 `.oxfmtrc.json`
-- **oxlint** 负责静态检查，配置在 `.oxlintrc.json`（生成代码 `app/services/fast-api/**` 已忽略）
-- 单引号、空格缩进
-- 提交时 Husky + lint-staged 自动检查（`oxlint --fix` → `oxfmt`）
-- 路径别名：`@/` → `app/`，`@config/` → `config/`
-
-### 命名规范
-
-- 文件夹和文件统一使用 **kebab-case**（如 `global-store.ts`、`access-control/`）
-- React 组件函数使用 **PascalCase**，Props 类型统一命名为 `Props`
-- 自定义 Hook 命名为 `use{Name}`，如 `useTitleUpdater`、`useTaskConfigModal`
-- 常量枚举映射使用 **UPPER_SNAKE_CASE**，如 `STATUS_MAP`、`PRIORITY_MAP`
-
 ### 注释规范
 
-- 只写重要的、有意义的注释，避免显而易见的废话注释
-- 辅助工具类函数建议都写注释说明其用途
+- 默认不写注释：业务组件、页面、常规逻辑均无需注释，代码本身应做到自解释
+- 仅以下两类建议写注释：
+  - **辅助/工具函数**：说明其用途，让人无需读实现就能知道何时该用
+  - **常量与枚举映射**：说明其用途与代表的业务含义
+- 杜绝复述代码的废话注释；注释只解释「为什么」，不解释「做了什么」
+
+### 提交规范
+
+- 遵循 Conventional Commits，格式为 `<type>: <描述>`
+- 描述使用中文，简洁说明本次改动
+- 当一次提交改动较多时，挑选最核心的改动来描述，不必罗列所有内容
+- 常用 type：
+  - feat：新增功能
+  - fix：修复缺陷
+  - refactor：重构，不改变外部行为
+  - chore：构建、依赖、配置等杂项
+  - docs：文档变更
+  - style：代码格式，不影响逻辑
+  - perf：性能优化
+  - test：测试相关
