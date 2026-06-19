@@ -9,4 +9,4 @@ export async function clientLoader() {
   return null;
 }
 
-export { default } from '@/layout/basic-layout';
+export { default } from '@/layout/custom-layout';
