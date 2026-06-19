@@ -56,6 +56,13 @@ pnpm openapi      # 从 Swagger 文档生成 API 服务代码
 - 使用 `cn()` 工具函数（clsx + tailwind-merge）合并类名，位于 `app/utils/`
 - 侧边栏配置在 `config/sidebar-setting.ts`，菜单在 `config/side-menu-config.tsx`
 
+### 图标
+
+- 基础场景统一使用 **lucide-react**（菜单图标也用它）
+- lucide 没有的图标：复制一段 svg 封装成组件，约定 `fill/stroke` 用 `currentColor` 并透传 props，用法与 lucide 一致；复用的图标放 `app/components/icons/`（用到时再建目录）
+- `@ant-design/icons` 仅在 antd 组件内部需要时使用，不主动推广
+- 示例见 `app/routes/icon-feature/`
+
 ### 组件模式
 
 - 共享组件在 `app/components/`，页面在 `app/routes/`

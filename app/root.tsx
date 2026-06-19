@@ -1,5 +1,4 @@
 import './styles/index.css';
-import './components/icon-font';
 import customAntdTheme from '@config/antd-theme';
 import preferences from '@config/preferences';
 import { QueryClientProvider } from '@tanstack/react-query';

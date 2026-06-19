@@ -1,8 +1,6 @@
 import { Card } from 'antd';
 
-import AntIconCase from './components/ant-icon-case';
-import IconFontCase from './components/icon-font-case';
-import LocalSvgCase from './components/local-svg-case';
+import CustomSvgCase from './components/custom-svg-case';
 import LucideCase from './components/lucide-case';
 
 const IconFeature = () => {
@@ -11,18 +9,12 @@ const IconFeature = () => {
       className="text-[40px] text-gray-700 dark:text-gray-200"
       style={{ '--icon-case-size': '32px' } as React.CSSProperties}
     >
-      <Card title="高质量图标集">
-        <div className="flex flex-col gap-5">
-          <AntIconCase />
-          <LucideCase />
-        </div>
+      <Card title="基础图标">
+        <LucideCase />
       </Card>
 
       <Card title="自定义图标" style={{ marginTop: 40 }}>
-        <div className="flex flex-col gap-5">
-          <IconFontCase />
-          <LocalSvgCase />
-        </div>
+        <CustomSvgCase />
       </Card>
     </div>
   );

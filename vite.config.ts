@@ -1,7 +1,6 @@
 import { reactRouter } from '@react-router/dev/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
-import svgr from 'vite-plugin-svgr';
 
 import { dependencies, devDependencies } from './package.json';
 
@@ -14,7 +13,7 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
-  plugins: [reactRouter(), tailwindcss(), svgr()],
+  plugins: [reactRouter(), tailwindcss()],
   server: {
     host: true,
     warmup: {

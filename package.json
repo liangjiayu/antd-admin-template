@@ -51,8 +51,7 @@
     "oxfmt": "latest",
     "oxlint": "latest",
     "typescript": "~6.0.2",
-    "vite": "^8.0.3",
-    "vite-plugin-svgr": "^5.2.0"
+    "vite": "^8.0.3"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
