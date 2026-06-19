@@ -1,16 +1,19 @@
-import { ProLayout } from '@ant-design/pro-components';
-import sideMenuConfig from '@config/side-menu-config';
-import sidebarSetting from '@config/sidebar-setting';
+import { ProLayout as AntProLayout } from '@ant-design/pro-components';
 import { useMemo } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router';
 
 import AccessControl from '@/components/access-control';
 import { ThemeMode } from '@/constants';
 import useTitleUpdater from '@/hooks/use-title-updater';
-import { AvatarInfo, Question, ThemeSwitch } from '@/layout/widgets/right-content';
 import { useGlobalStore } from '@/store';
 
-const BasicLayout = () => {
+import AvatarInfo from './components/avatar-info';
+import Question from './components/question';
+import ThemeSwitch from './components/theme-switch';
+import sideMenuConfig from './side-menu-config';
+import sidebarSetting from './sidebar-setting';
+
+const ProLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const themeMode = useGlobalStore((s) => s.themeMode);
@@ -25,7 +28,7 @@ const BasicLayout = () => {
   }, [themeMode]);
 
   return (
-    <ProLayout
+    <AntProLayout
       {...sidebarSetting}
       navTheme={navTheme}
       location={location}
@@ -80,8 +83,8 @@ const BasicLayout = () => {
       <AccessControl>
         <Outlet />
       </AccessControl>
-    </ProLayout>
+    </AntProLayout>
   );
 };
 
-export default BasicLayout;
+export default ProLayout;
