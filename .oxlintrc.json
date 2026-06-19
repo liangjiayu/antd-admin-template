@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "import"],
+  "plugins": ["react", "typescript", "unicorn", "import"],
   "categories": {
     "correctness": "error",
     "suspicious": "warn",
@@ -16,14 +16,17 @@
     }
   },
   "rules": {
-    "react/react-in-jsx-scope": "off",
-    "react-hooks/exhaustive-deps": "warn",
     "eslint/no-underscore-dangle": "off",
-    "typescript/no-explicit-any": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/no-array-index-key": "warn",
+    "react/no-unstable-nested-components": ["warn", { "allowAsProps": true }],
+    "react-hooks/exhaustive-deps": "off",
+    "typescript/no-explicit-any": "off",
     "typescript/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "typescript/consistent-type-imports": ["error"],
-    "react/no-array-index-key": "off",
+    "unicorn/filename-case": ["warn", { "case": "kebabCase" }],
+    "unicorn/no-null": "off",
     "import/no-unassigned-import": "off"
   },
-  "ignorePatterns": ["app/services/fast-api/**"]
+  "ignorePatterns": ["app/services/**"]
 }
