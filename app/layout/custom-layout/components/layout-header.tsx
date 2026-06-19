@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router';
 
 import { SITE_APP_TITLE, SITE_LOGO_URL } from '@/constants';
 
-import { topNavItems } from '../mock/menu-data';
+import { topNavItems } from '../menu-config';
 import HeaderActions from './header-actions';
 
 type LayoutHeaderProps = {

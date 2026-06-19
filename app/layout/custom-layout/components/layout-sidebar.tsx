@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { ChevronRight, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { Link, useLocation } from 'react-router';
 
-import { sideMenuGroups } from '../mock/menu-data';
+import { sideMenuGroups } from '../menu-config';
 
 type LayoutSidebarProps = {
   collapsed: boolean;
