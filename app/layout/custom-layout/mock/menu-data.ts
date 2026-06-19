@@ -10,6 +10,7 @@ import {
   Shrink,
   SlidersHorizontal,
   Spline,
+  Table,
   Type,
   Users,
   Wallet,
@@ -25,7 +26,10 @@ import type { MenuGroup, TopNavItem } from '../types';
 export const sideMenuGroups: MenuGroup[] = [
   {
     key: 'overview',
-    items: [{ key: 'model-square', path: '/', name: '模型广场', icon: createElement(LayoutGrid) }],
+    items: [
+      { key: 'model-square', path: '/', name: '模型广场', icon: createElement(LayoutGrid) },
+      { key: 'crud-table', path: '/crud-table', name: 'CRUD 表格', icon: createElement(Table) },
+    ],
   },
   {
     key: 'experience',
@@ -114,7 +118,7 @@ export const sideMenuGroups: MenuGroup[] = [
 export const topNavItems: TopNavItem[] = [
   { key: 'model', name: '模型', path: '/' },
   { key: 'app', name: '应用', path: '/app' },
-  { key: 'subscription', name: '订阅', path: '/subscription', badge: 'Token Plan' },
+  { key: 'subscription', name: '订阅', path: '/subscription' },
   { key: 'experience', name: '体验', path: '/experience' },
   { key: 'docs', name: '文档', path: '/docs' },
   { key: 'api', name: 'API 参考', path: '/api-reference' },

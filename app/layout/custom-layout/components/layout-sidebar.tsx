@@ -15,7 +15,7 @@ const LayoutSidebar = ({ collapsed, onToggle }: LayoutSidebarProps) => {
   return (
     <aside
       className={clsx(
-        'flex shrink-0 flex-col border-r border-gray-100 bg-white transition-[width] duration-200',
+        'flex shrink-0 flex-col transition-[width] duration-200',
         collapsed ? 'w-16' : 'w-52',
       )}
     >

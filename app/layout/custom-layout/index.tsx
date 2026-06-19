@@ -14,14 +14,16 @@ const CustomLayout = () => {
   const toggleSidebar = () => setCollapsed((v) => !v);
 
   return (
-    <div className="flex h-screen flex-col bg-gray-50">
+    <div className="flex h-screen flex-col bg-[#F9FAFD]">
       <LayoutHeader onToggleSidebar={toggleSidebar} />
       <div className="flex flex-1 overflow-hidden">
         <LayoutSidebar collapsed={collapsed} onToggle={toggleSidebar} />
-        <main className="flex-1 overflow-auto p-4">
-          <AccessControl>
-            <Outlet />
-          </AccessControl>
+        <main className="mr-2 mb-2 flex-1">
+          <div className="h-full overflow-auto rounded-xl border border-gray-100 bg-white p-4">
+            <AccessControl>
+              <Outlet />
+            </AccessControl>
+          </div>
         </main>
       </div>
     </div>

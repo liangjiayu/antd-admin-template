@@ -18,7 +18,7 @@ const LayoutHeader = ({ onToggleSidebar }: LayoutHeaderProps) => {
     path === '/' ? pathname === '/' : pathname.startsWith(path);
 
   return (
-    <header className="flex h-14 shrink-0 items-center border-b border-gray-100 bg-white px-4">
+    <header className="flex h-14 shrink-0 items-center px-4">
       <div className="flex items-center gap-3">
         <button
           type="button"
@@ -47,11 +47,6 @@ const LayoutHeader = ({ onToggleSidebar }: LayoutHeaderProps) => {
             )}
           >
             <span>{item.name}</span>
-            {item.badge && (
-              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-xs font-normal text-primary">
-                {item.badge}
-              </span>
-            )}
           </Link>
         ))}
       </nav>

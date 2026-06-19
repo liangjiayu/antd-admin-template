@@ -21,6 +21,4 @@ export type TopNavItem = {
   key: string;
   name: string;
   path: string;
-  /** 导航名右侧的小徽标文案（如「Token Plan」） */
-  badge?: string;
 };
