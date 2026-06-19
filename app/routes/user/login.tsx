@@ -7,57 +7,23 @@ import {
 } from '@ant-design/icons';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { Alert, message } from 'antd';
-import { createStyles } from 'antd-style';
 import type React from 'react';
 import { useState } from 'react';
 
 import { SITE_LOGO_URL, ThemeMode } from '@/constants';
 import { useGlobalStore } from '@/store/global-store';
+import { cn } from '@/utils';
 
-const useStyles = createStyles(({ token }, { isDark }: { isDark: boolean }) => {
-  return {
-    action: {
-      marginLeft: '8px',
-      color: token.colorTextTertiary,
-      fontSize: '24px',
-      verticalAlign: 'middle',
-      cursor: 'pointer',
-      transition: 'color 0.3s',
-      '&:hover': {
-        color: token.colorPrimaryActive,
-      },
-    },
-    lang: {
-      width: 42,
-      height: 42,
-      lineHeight: '42px',
-      position: 'fixed',
-      right: 16,
-      borderRadius: token.borderRadius,
-      ':hover': {
-        backgroundColor: token.colorBgTextHover,
-      },
-    },
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100vh',
-      overflow: 'auto',
-      backgroundColor: token.colorBgLayout,
-      backgroundImage: isDark
-        ? 'none'
-        : "url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')",
-      backgroundSize: '100% 100%',
-    },
-  };
-});
 const ActionIcons = ({ isDark }: { isDark: boolean }) => {
-  const { styles } = useStyles({ isDark });
+  const className = cn(
+    'ml-2 cursor-pointer align-middle text-2xl transition-colors hover:text-primary',
+    isDark ? 'text-white/45' : 'text-black/45',
+  );
   return (
     <>
-      <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.action} />
-      <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.action} />
-      <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.action} />
+      <AlipayCircleOutlined key="AlipayCircleOutlined" className={className} />
+      <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={className} />
+      <WeiboCircleOutlined key="WeiboCircleOutlined" className={className} />
     </>
   );
 };
@@ -65,21 +31,11 @@ const ActionIcons = ({ isDark }: { isDark: boolean }) => {
 const LoginMessage: React.FC<{
   content: string;
 }> = ({ content }) => {
-  return (
-    <Alert
-      style={{
-        marginBottom: 24,
-      }}
-      message={content}
-      type="error"
-      showIcon
-    />
-  );
+  return <Alert className="mb-6" message={content} type="error" showIcon />;
 };
 
 const Login: React.FC = () => {
   const isDark = useGlobalStore((s) => s.themeMode === ThemeMode.Dark);
-  const { styles } = useStyles({ isDark });
   const [hasError, setHasError] = useState(false);
 
   const handleSubmit = async (_values: {
@@ -99,13 +55,19 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div
-        style={{
-          flex: '1',
-          padding: '32px 0',
-        }}
-      >
+    <div
+      className={cn('flex h-screen flex-col overflow-auto', isDark ? 'bg-black' : 'bg-[#f5f5f5]')}
+      style={
+        !isDark
+          ? {
+              backgroundImage:
+                "url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')",
+              backgroundSize: '100% 100%',
+            }
+          : undefined
+      }
+    >
+      <div className="flex-1 py-8">
         <LoginForm
           contentStyle={{
             minWidth: 280,
@@ -151,21 +113,11 @@ const Login: React.FC = () => {
             ]}
           />
           {hasError && <LoginMessage content={'错误的用户名和密码(admin/123456)'} />}
-          <div
-            style={{
-              marginBottom: 24,
-            }}
-          >
+          <div className="mb-6">
             <ProFormCheckbox noStyle name="autoLogin">
               自动登录
             </ProFormCheckbox>
-            <a
-              style={{
-                float: 'right',
-              }}
-            >
-              忘记密码 ?
-            </a>
+            <a className="float-right">忘记密码 ?</a>
           </div>
         </LoginForm>
       </div>

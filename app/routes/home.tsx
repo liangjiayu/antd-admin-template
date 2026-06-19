@@ -10,7 +10,7 @@ function objToDescItems(data: object) {
 
 const Home = () => {
   return (
-    <div className="!space-y-5">
+    <div className="space-y-5">
       <Card title="生产依赖">
         <Descriptions
           items={objToDescItems(__APP_INFO__.pkg.dependencies)}

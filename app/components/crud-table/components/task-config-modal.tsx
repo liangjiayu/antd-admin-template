@@ -99,9 +99,7 @@ const TaskConfigModal: React.FC<TaskConfigModalProps> = ({
 export default TaskConfigModal;
 
 export function useTaskConfigModal(params?: {
-  /** 弹窗关闭回调 */
   handleOnClose?: () => void;
-  /** 弹窗完成回调 */
   handleOnFinish?: () => void;
 }) {
   const [modalParams, setModalParams] = useState<

@@ -1,4 +1,5 @@
 import './styles/index.css';
+import { StyleProvider } from '@ant-design/cssinjs';
 import customAntdTheme from '@config/antd-theme';
 import preferences from '@config/preferences';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -67,16 +68,18 @@ export default function Root() {
   }, [themeMode]);
 
   return (
-    <ConfigProvider theme={{ ...customAntdTheme, algorithm: themeAlgorithm }} locale={zhCN}>
-      <QueryClientProvider client={queryClient}>
-        <AntdApp>
-          <Outlet />
-          {preferences.enableCheckUpdates && (
-            <CheckUpdates checkUpdatesInterval={preferences.checkUpdatesInterval} />
-          )}
-        </AntdApp>
-        {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
-      </QueryClientProvider>
-    </ConfigProvider>
+    <StyleProvider layer>
+      <ConfigProvider theme={{ ...customAntdTheme, algorithm: themeAlgorithm }} locale={zhCN}>
+        <QueryClientProvider client={queryClient}>
+          <AntdApp>
+            <Outlet />
+            {preferences.enableCheckUpdates && (
+              <CheckUpdates checkUpdatesInterval={preferences.checkUpdatesInterval} />
+            )}
+          </AntdApp>
+          {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
+        </QueryClientProvider>
+      </ConfigProvider>
+    </StyleProvider>
   );
 }
