@@ -1,6 +1,8 @@
 @layer theme, base, antd, components, utilities;
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   svg {
     display: inline-block;
@@ -8,6 +10,19 @@
   .lucide {
     width: 1em;
     height: 1em;
+  }
+
+  :root {
+    --bg-layout: #f9fafd;
+    --bg-container: #ffffff;
+    --border-base: #f3f4f6;
+    --fill-hover: #f3f4f6;
+  }
+  .dark {
+    --bg-layout: #131313;
+    --bg-container: #212121;
+    --border-base: #262626;
+    --fill-hover: #2a2a2a;
   }
 }
 
@@ -17,5 +32,10 @@
  */
 @theme {
   --color-primary: #2166f7;
-  --radius-primary: 10px;
+  --radius-primary: 8px;
+
+  --color-bg-layout: var(--bg-layout);
+  --color-bg-container: var(--bg-container);
+  --color-border-base: var(--border-base);
+  --color-fill-hover: var(--fill-hover);
 }

@@ -26,9 +26,11 @@ const LayoutSidebar = ({ collapsed, onToggle }: LayoutSidebarProps) => {
         {groups.map((group) => (
           <div key={group.key} className="mb-2">
             {group.title && !collapsed && (
-              <div className="px-3 py-1.5 text-xs text-gray-400">{group.title}</div>
+              <div className="px-3 py-1.5 text-xs text-gray-400 dark:text-gray-500">
+                {group.title}
+              </div>
             )}
-            {group.title && collapsed && <div className="mx-3 my-2 border-t border-gray-100" />}
+            {group.title && collapsed && <div className="mx-3 my-2 border-t border-border-base" />}
             <ul className="space-y-0.5">
               {group.items.map((item) => {
                 const active = pathname === item.path;
@@ -40,7 +42,7 @@ const LayoutSidebar = ({ collapsed, onToggle }: LayoutSidebarProps) => {
                       collapsed ? 'mx-auto size-9 justify-center' : 'gap-2 px-3 py-2',
                       active
                         ? 'bg-primary/10 font-medium text-primary'
-                        : 'text-gray-600 hover:bg-gray-100',
+                        : 'text-gray-600 hover:bg-fill-hover dark:text-gray-300',
                     )}
                   >
                     <span className="flex size-[18px] items-center justify-center text-base">
@@ -66,13 +68,13 @@ const LayoutSidebar = ({ collapsed, onToggle }: LayoutSidebarProps) => {
         ))}
       </nav>
 
-      <div className="shrink-0 border-t border-gray-100 p-2">
+      <div className="shrink-0 border-t border-border-base p-2">
         <button
           type="button"
           aria-label={collapsed ? '展开菜单' : '折叠菜单'}
           onClick={onToggle}
           className={cn(
-            'flex items-center rounded-lg text-gray-500 transition-colors hover:bg-gray-100',
+            'flex items-center rounded-lg text-gray-500 transition-colors hover:bg-fill-hover dark:text-gray-400',
             collapsed ? 'mx-auto size-9 justify-center' : 'w-full px-3 py-2',
           )}
         >

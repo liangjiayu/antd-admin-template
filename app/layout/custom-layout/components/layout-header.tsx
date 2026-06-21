@@ -14,7 +14,9 @@ const LayoutHeader = () => {
     <header className="flex h-14 shrink-0 items-center px-4">
       <Link to="/" className="flex items-center gap-2">
         <img src={SITE_LOGO_URL} alt="logo" className="size-7" />
-        <span className="text-base font-semibold text-gray-900">{SITE_APP_TITLE}</span>
+        <span className="text-base font-semibold text-gray-900 dark:text-gray-100">
+          {SITE_APP_TITLE}
+        </span>
       </Link>
 
       <nav className="ml-8 flex flex-1 items-center gap-1">
@@ -25,8 +27,8 @@ const LayoutHeader = () => {
             className={cn(
               'flex items-center gap-1 rounded-lg px-3 py-1.5 text-[15px] transition-colors',
               activeNavKey === item.key
-                ? 'font-medium text-gray-900'
-                : 'text-gray-500 hover:text-gray-900',
+                ? 'font-medium text-gray-900 dark:text-gray-100'
+                : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
             )}
           >
             <span>{item.name}</span>

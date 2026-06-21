@@ -30,7 +30,7 @@ const UserAvatar = () => {
     <Dropdown menu={{ items }} trigger={['hover']} placement="bottomRight">
       <button
         type="button"
-        className="flex h-8 items-center gap-1.5 rounded-lg px-1.5 transition-colors hover:bg-gray-100"
+        className="flex h-8 items-center gap-1.5 rounded-lg px-1.5 transition-colors hover:bg-fill-hover"
       >
         {currentUser?.avatar ? (
           <img src={currentUser.avatar} alt="avatar" className="size-7 rounded-full object-cover" />
@@ -39,7 +39,7 @@ const UserAvatar = () => {
             <UserOutlined />
           </span>
         )}
-        <span className="max-w-24 truncate text-sm text-gray-700">
+        <span className="max-w-24 truncate text-sm text-gray-700 dark:text-gray-300">
           {currentUser?.name ?? '未登录'}
         </span>
       </button>
