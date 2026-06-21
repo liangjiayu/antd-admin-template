@@ -6,8 +6,6 @@ export type MenuLeaf = {
   path: string;
   name: string;
   icon?: ReactNode;
-  /** 是否展示右侧展开箭头（如「用量 & 费用」等可展开项） */
-  hasArrow?: boolean;
 };
 
 export type MenuGroup = {

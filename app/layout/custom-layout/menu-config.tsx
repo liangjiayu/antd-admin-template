@@ -61,27 +61,9 @@ export const sideMenuGroups: MenuGroup[] = [
     key: 'workbench',
     title: '工作台',
     items: [
-      {
-        key: 'usage',
-        path: '/workbench/usage',
-        name: '用量 & 费用',
-        icon: <Wallet />,
-        hasArrow: true,
-      },
-      {
-        key: 'permission',
-        path: '/workbench/permission',
-        name: '权限管理',
-        icon: <Users />,
-        hasArrow: true,
-      },
-      {
-        key: 'api-key',
-        path: '/workbench/api-key',
-        name: 'API Key',
-        icon: <Key />,
-        hasArrow: true,
-      },
+      { key: 'usage', path: '/workbench/usage', name: '用量 & 费用', icon: <Wallet /> },
+      { key: 'permission', path: '/workbench/permission', name: '权限管理', icon: <Users /> },
+      { key: 'api-key', path: '/workbench/api-key', name: 'API Key', icon: <Key /> },
     ],
   },
 ];

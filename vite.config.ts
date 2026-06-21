@@ -20,7 +20,7 @@ export default defineConfig({
       clientFiles: ['./app/routes/**/*.tsx'],
     },
     proxy: {
-      '/api': {
+      '^/api/': {
         target: 'https://fast-api-mock.netlify.app',
         changeOrigin: true,
       },

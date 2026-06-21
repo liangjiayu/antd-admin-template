@@ -15,7 +15,7 @@ const CustomLayout = () => {
 
   return (
     <div className="flex h-screen flex-col bg-[#F9FAFD]">
-      <LayoutHeader onToggleSidebar={toggleSidebar} />
+      <LayoutHeader />
       <div className="flex flex-1 overflow-hidden">
         <LayoutSidebar collapsed={collapsed} onToggle={toggleSidebar} />
         <main className="mr-2 mb-2 flex-1">
