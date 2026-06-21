@@ -6,7 +6,7 @@ import type { ThemeConfig } from 'antd';
  */
 const customAntdTheme: ThemeConfig = {
   token: {
-    colorPrimary: '#2166f7', //  #2166f7(蓝色) #722ed1(紫色)
+    colorPrimary: '#2166f7',
     borderRadius: 8,
     wireframe: false,
     colorInfo: '#2166f7',
