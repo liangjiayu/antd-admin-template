@@ -41,11 +41,11 @@ const LayoutSidebar = ({ collapsed, onToggle }: LayoutSidebarProps) => {
                       'flex items-center rounded-lg text-sm transition-colors',
                       collapsed ? 'mx-auto size-9 justify-center' : 'gap-2 px-3 py-2',
                       active
-                        ? 'bg-primary/10 font-medium text-primary'
+                        ? 'bg-fill-active font-medium text-gray-800 dark:text-gray-50'
                         : 'text-gray-600 hover:bg-fill-hover dark:text-gray-300',
                     )}
                   >
-                    <span className="flex size-[18px] items-center justify-center text-base">
+                    <span className="flex size-4.5 items-center justify-center text-base">
                       {item.icon}
                     </span>
                     {!collapsed && <span className="flex-1 truncate">{item.name}</span>}
@@ -68,7 +68,7 @@ const LayoutSidebar = ({ collapsed, onToggle }: LayoutSidebarProps) => {
         ))}
       </nav>
 
-      <div className="shrink-0 border-t border-border-base p-2">
+      <div className="shrink-0 p-2">
         <button
           type="button"
           aria-label={collapsed ? '展开菜单' : '折叠菜单'}
@@ -79,9 +79,9 @@ const LayoutSidebar = ({ collapsed, onToggle }: LayoutSidebarProps) => {
           )}
         >
           {collapsed ? (
-            <PanelLeftOpen className="size-[18px]" />
+            <PanelLeftOpen className="size-4.5" />
           ) : (
-            <PanelLeftClose className="size-[18px]" />
+            <PanelLeftClose className="size-4.5" />
           )}
         </button>
       </div>

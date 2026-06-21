@@ -19,7 +19,7 @@ const CustomLayout = () => {
       <div className="flex flex-1 overflow-hidden">
         <LayoutSidebar collapsed={collapsed} onToggle={toggleSidebar} />
         <main className="mr-2 mb-2 flex-1">
-          <div className="h-full overflow-auto rounded-xl border border-border-base bg-bg-container p-4">
+          <div className="h-full overflow-auto rounded-xl border border-border-base bg-bg-container p-4 scrollbar-hide">
             <AccessControl>
               <Outlet />
             </AccessControl>
