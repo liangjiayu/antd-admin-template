@@ -3,14 +3,12 @@ import { Link, useLocation } from 'react-router';
 import { SITE_APP_TITLE, SITE_LOGO_URL } from '@/constants';
 import { cn } from '@/utils';
 
-import { topNavItems } from '../menu-config';
+import { findActiveNavKey, topNavItems } from '../menu-config';
 import HeaderActions from './header-actions';
 
 const LayoutHeader = () => {
   const { pathname } = useLocation();
-
-  const isNavActive = (path: string) =>
-    path === '/' ? pathname === '/' : pathname.startsWith(path);
+  const activeNavKey = findActiveNavKey(pathname);
 
   return (
     <header className="flex h-14 shrink-0 items-center px-4">
@@ -26,7 +24,7 @@ const LayoutHeader = () => {
             to={item.path}
             className={cn(
               'flex items-center gap-1 rounded-lg px-3 py-1.5 text-[15px] transition-colors',
-              isNavActive(item.path)
+              activeNavKey === item.key
                 ? 'font-medium text-gray-900'
                 : 'text-gray-500 hover:text-gray-900',
             )}

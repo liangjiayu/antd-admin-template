@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router';
 
 import { cn } from '@/utils';
 
-import { sideMenuGroups } from '../menu-config';
+import { findActiveNavKey, sideMenuGroupsMap } from '../menu-config';
 
 type LayoutSidebarProps = {
   collapsed: boolean;
@@ -13,6 +13,7 @@ type LayoutSidebarProps = {
 
 const LayoutSidebar = ({ collapsed, onToggle }: LayoutSidebarProps) => {
   const { pathname } = useLocation();
+  const groups = sideMenuGroupsMap[findActiveNavKey(pathname)] ?? [];
 
   return (
     <aside
@@ -22,7 +23,7 @@ const LayoutSidebar = ({ collapsed, onToggle }: LayoutSidebarProps) => {
       )}
     >
       <nav className="flex-1 overflow-y-auto px-2 py-3">
-        {sideMenuGroups.map((group) => (
+        {groups.map((group) => (
           <div key={group.key} className="mb-2">
             {group.title && !collapsed && (
               <div className="px-3 py-1.5 text-xs text-gray-400">{group.title}</div>
