@@ -10,6 +10,7 @@ import {
   Gauge,
   Key,
   LayoutGrid,
+  LayoutList,
   Rocket,
   Shrink,
   SlidersHorizontal,
@@ -39,8 +40,9 @@ export const sideMenuGroupsMap: Record<string, MenuGroup[]> = {
     {
       key: 'overview',
       items: [
-        { key: 'model-square', path: '/', name: '模型广场', icon: <LayoutGrid /> },
+        { key: 'home', path: '/', name: '首页', icon: <LayoutGrid /> },
         { key: 'crud-table', path: '/crud-table', name: 'CRUD 表格', icon: <Table /> },
+        { key: 'task-card', path: '/task-card', name: '任务卡片', icon: <LayoutList /> },
       ],
     },
     {

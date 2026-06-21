@@ -1,25 +1,14 @@
-import {
-  App as AntdApp,
-  Badge,
-  Card,
-  Col,
-  Empty,
-  Input,
-  Pagination,
-  Row,
-  Select,
-  Space,
-  Spin,
-  Tag,
-} from 'antd';
-import dayjs from 'dayjs';
+import { App as AntdApp, Button, Empty, Input, Pagination, Select, Spin } from 'antd';
+import { Plus } from 'lucide-react';
 import { useState } from 'react';
 
-import { PRIORITY_MAP, STATUS_MAP, STATUS_OPTIONS } from '@/components/crud-table/constants';
-import { FastApiServices } from '@/services';
+import { useTaskConfigModal } from '@/components/crud-table/components/task-config-modal';
+import { STATUS_OPTIONS } from '@/components/crud-table/constants';
+import { ModalActionType } from '@/constants';
 import { refreshQuery } from '@/utils/query-client';
 
-import { TASK_LIST_KEY, useTaskList } from './hooks';
+import TaskCardItem from './components/task-card-item';
+import { TASK_LIST_KEY, useDeleteTask, useTaskList } from './hooks';
 
 const TaskCard = () => {
   const { message, modal } = AntdApp.useApp();
@@ -29,31 +18,47 @@ const TaskCard = () => {
   const [status, setStatus] = useState<FastAPI.Task['status'] | undefined>();
 
   const { data, isFetching } = useTaskList({ page, pageSize, name, status });
-
-  const handleDelete = (record: FastAPI.Task) => {
-    modal.confirm({
-      title: '确认删除该任务？',
-      content: record.name,
-      onOk: async () => {
-        await FastApiServices.Task.deleteTask({ id: record.id });
-        message.success('删除成功');
-        refreshQuery(TASK_LIST_KEY);
-      },
-    });
-  };
+  const { mutateAsync: deleteTask } = useDeleteTask();
+  const { element: modalElement, setModalParams } = useTaskConfigModal({
+    handleOnFinish: () => refreshQuery(TASK_LIST_KEY),
+  });
 
   const tasks = data?.data ?? [];
   const total = data?.total ?? 0;
 
+  const handleCreate = () => {
+    setModalParams({ open: true, title: '新建任务', modalActionType: ModalActionType.CREATE });
+  };
+
+  const handleEdit = (task: FastAPI.Task) => {
+    setModalParams({
+      open: true,
+      title: '编辑任务',
+      modalActionType: ModalActionType.EDIT,
+      initialValues: task,
+    });
+  };
+
+  const handleDelete = (task: FastAPI.Task) => {
+    modal.confirm({
+      title: '确认删除该任务？',
+      content: task.name,
+      onOk: async () => {
+        await deleteTask(task.id);
+        message.success('删除成功');
+      },
+    });
+  };
+
   return (
-    <Card
-      variant="borderless"
-      title={
-        <Space size="middle" wrap>
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h2 className="text-base font-semibold text-gray-800 dark:text-gray-100">任务卡片</h2>
+        <div className="flex flex-wrap items-center gap-2">
           <Input.Search
             placeholder="按名称搜索"
             allowClear
-            style={{ width: 220 }}
+            className="w-55"
             onSearch={(v) => {
               setName(v);
               setPage(1);
@@ -62,7 +67,7 @@ const TaskCard = () => {
           <Select
             placeholder="按状态筛选"
             allowClear
-            style={{ width: 160 }}
+            className="w-40"
             options={STATUS_OPTIONS}
             value={status}
             onChange={(v) => {
@@ -70,46 +75,21 @@ const TaskCard = () => {
               setPage(1);
             }}
           />
-        </Space>
-      }
-    >
+          <Button type="primary" icon={<Plus className="size-4" />} onClick={handleCreate}>
+            新建任务
+          </Button>
+        </div>
+      </div>
+
       <Spin spinning={isFetching}>
         {tasks.length === 0 ? (
           <Empty className="py-16" />
         ) : (
-          <Row gutter={[16, 16]}>
-            {tasks.map((task) => {
-              const statusConf = STATUS_MAP[task.status];
-              const priorityConf = PRIORITY_MAP[task.priority];
-              return (
-                <Col key={task.id} xs={24} sm={12} md={8} xl={6}>
-                  <Card
-                    title={task.name}
-                    extra={<Tag color={priorityConf.color}>{priorityConf.text}</Tag>}
-                    actions={[
-                      <a key="delete" className="text-red-500!" onClick={() => handleDelete(task)}>
-                        删除
-                      </a>,
-                    ]}
-                  >
-                    <div className="space-y-2 text-sm">
-                      <div>
-                        <Badge status={statusConf.status as any} text={statusConf.text} />
-                      </div>
-                      <div className="text-gray-500">负责人：{task.assignee}</div>
-                      <div className="line-clamp-2 h-10 text-gray-500">
-                        {task.description || '-'}
-                      </div>
-                      <div className="text-xs text-gray-400">
-                        截止：
-                        {task.deadline ? dayjs(task.deadline).format('YYYY-MM-DD') : '-'}
-                      </div>
-                    </div>
-                  </Card>
-                </Col>
-              );
-            })}
-          </Row>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {tasks.map((task) => (
+              <TaskCardItem key={task.id} task={task} onEdit={handleEdit} onDelete={handleDelete} />
+            ))}
+          </div>
         )}
 
         <div className="mt-6 flex justify-end">
@@ -127,7 +107,9 @@ const TaskCard = () => {
           />
         </div>
       </Spin>
-    </Card>
+
+      {modalElement}
+    </div>
   );
 };
 
