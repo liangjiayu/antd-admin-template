@@ -5,8 +5,6 @@ export default [
     index('routes/home.tsx'),
     route('crud-table', 'routes/crud-table/index.tsx'),
     route('task-card', 'routes/task-card/index.tsx'),
-    route('icon-feature', 'routes/icon-feature/index.tsx'),
-    route('admin-manager', 'routes/admin-manager.tsx'),
     route('exception/403', 'routes/exception/403.tsx'),
     route('exception/404', 'routes/exception/404.tsx'),
     route('exception/500', 'routes/exception/500.tsx'),

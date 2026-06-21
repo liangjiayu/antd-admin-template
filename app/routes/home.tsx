@@ -1,12 +1,4 @@
-import {
-  ArrowRight,
-  LayoutGrid,
-  PencilRuler,
-  Shield,
-  Sparkles,
-  Table2,
-  TriangleAlert,
-} from 'lucide-react';
+import { ArrowRight, LayoutGrid, Sparkles, Table2, TriangleAlert } from 'lucide-react';
 import { Link } from 'react-router';
 
 const TECH_STACK = ['React Router', 'Ant Design', 'Tailwind CSS', 'TanStack Query', 'TypeScript'];
@@ -23,18 +15,6 @@ const FEATURES = [
     name: '任务卡片',
     desc: '卡片化的数据展示与筛选，适配看板类场景',
     icon: LayoutGrid,
-  },
-  {
-    path: '/icon-feature',
-    name: '图标功能',
-    desc: '基于 lucide-react 的图标检索与使用示例',
-    icon: PencilRuler,
-  },
-  {
-    path: '/admin-manager',
-    name: '权限示例',
-    desc: '基于路由的访问控制，按角色渲染页面与操作',
-    icon: Shield,
   },
   {
     path: '/exception/404',

@@ -1,5 +1,5 @@
 import type { MenuDataItem } from '@ant-design/pro-components';
-import { House, LayoutGrid, PencilRuler, Shield, Table2, TriangleAlert } from 'lucide-react';
+import { House, LayoutGrid, Table2, TriangleAlert } from 'lucide-react';
 
 const Side_Menu_Config: MenuDataItem[] = [
   {
@@ -16,16 +16,6 @@ const Side_Menu_Config: MenuDataItem[] = [
     path: '/task-card',
     name: '任务卡片',
     icon: <LayoutGrid />,
-  },
-  {
-    path: '/icon-feature',
-    name: '图标功能',
-    icon: <PencilRuler />,
-  },
-  {
-    path: '/admin-manager',
-    name: '权限示例',
-    icon: <Shield />,
   },
   {
     path: '/exception',
