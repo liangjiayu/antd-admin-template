@@ -2,8 +2,6 @@ import { reactRouter } from '@react-router/dev/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
-import { dependencies, devDependencies } from './package.json';
-
 /**
  * vite 配置
  * @see https://cn.vite.dev/config/
@@ -25,10 +23,5 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
-  },
-  define: {
-    __APP_INFO__: JSON.stringify({
-      pkg: { dependencies, devDependencies },
-    }),
   },
 });

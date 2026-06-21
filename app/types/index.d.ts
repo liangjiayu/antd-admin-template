@@ -1,7 +1,5 @@
 import type { UIMatch } from 'react-router';
 
-import type { dependencies, devDependencies } from '../../package.json';
-
 type RouteMeta = {
   name?: string;
   access?: string;
@@ -13,13 +11,4 @@ type RouteMeta = {
  */
 declare module 'react-router' {
   function useMatches(): UIMatch<unknown, RouteMeta>[];
-}
-
-declare global {
-  const __APP_INFO__: {
-    pkg: {
-      dependencies: typeof dependencies;
-      devDependencies: typeof devDependencies;
-    };
-  };
 }
