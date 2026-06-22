@@ -3,8 +3,8 @@ import { index, layout, type RouteConfig, route } from '@react-router/dev/routes
 export default [
   layout('routes/basic-layout.tsx', [
     index('routes/home.tsx'),
-    route('crud-table', 'routes/crud-table/index.tsx'),
-    route('task-card', 'routes/task-card/index.tsx'),
+    route('table-list', 'routes/table-list/index.tsx'),
+    route('card-list', 'routes/card-list/index.tsx'),
     route('exception/403', 'routes/exception/403.tsx'),
     route('exception/404', 'routes/exception/404.tsx'),
     route('exception/500', 'routes/exception/500.tsx'),

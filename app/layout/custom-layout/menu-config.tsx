@@ -41,8 +41,8 @@ export const sideMenuGroupsMap: Record<string, MenuGroup[]> = {
       key: 'overview',
       items: [
         { key: 'home', path: '/', name: '首页', icon: <LayoutGrid /> },
-        { key: 'crud-table', path: '/crud-table', name: 'CRUD 表格', icon: <Table /> },
-        { key: 'task-card', path: '/task-card', name: '任务卡片', icon: <LayoutList /> },
+        { key: 'table-list', path: '/table-list', name: '表格列表', icon: <Table /> },
+        { key: 'card-list', path: '/card-list', name: '卡片列表', icon: <LayoutList /> },
       ],
     },
     {

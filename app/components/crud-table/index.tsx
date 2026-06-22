@@ -156,7 +156,3 @@ const CrudTable = () => {
 };
 
 export default CrudTable;
-
-export const handle = {
-  name: 'CRUD表格',
-};

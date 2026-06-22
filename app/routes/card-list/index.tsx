@@ -5,7 +5,7 @@ import TaskCardItem from './components/task-card-item';
 import { STATUS_OPTIONS } from './constants';
 import { useDeleteTask, useTaskList } from './hooks';
 
-const TaskCard = () => {
+const CardList = () => {
   const { message, modal } = AntdApp.useApp();
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(12);
@@ -32,7 +32,7 @@ const TaskCard = () => {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-base font-semibold text-gray-800 dark:text-gray-100">任务卡片</h2>
+        <h2 className="text-base font-semibold text-gray-800 dark:text-gray-100">卡片列表</h2>
         <div className="flex flex-wrap items-center gap-2">
           <Input.Search
             placeholder="按名称搜索"
@@ -87,8 +87,8 @@ const TaskCard = () => {
   );
 };
 
-export default TaskCard;
+export default CardList;
 
 export const handle = {
-  name: '任务卡片',
+  name: '卡片列表',
 };

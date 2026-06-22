@@ -5,14 +5,14 @@ const TECH_STACK = ['React Router', 'Ant Design', 'Tailwind CSS', 'TanStack Quer
 
 const FEATURES = [
   {
-    path: '/crud-table',
-    name: 'CRUD 表格',
+    path: '/table-list',
+    name: '表格列表',
     desc: '内置增删改查、搜索与分页的标准列表页范式',
     icon: Table2,
   },
   {
-    path: '/task-card',
-    name: '任务卡片',
+    path: '/card-list',
+    name: '卡片列表',
     desc: '卡片化的数据展示与筛选，适配看板类场景',
     icon: LayoutGrid,
   },

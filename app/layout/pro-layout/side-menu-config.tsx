@@ -8,13 +8,13 @@ const Side_Menu_Config: MenuDataItem[] = [
     icon: <House />,
   },
   {
-    path: '/crud-table',
-    name: 'CRUD表格',
+    path: '/table-list',
+    name: '表格列表',
     icon: <Table2 />,
   },
   {
-    path: '/task-card',
-    name: '任务卡片',
+    path: '/card-list',
+    name: '卡片列表',
     icon: <LayoutGrid />,
   },
   {
