@@ -1,14 +1,9 @@
-import { App as AntdApp, Button, Empty, Input, Pagination, Select, Spin } from 'antd';
-import { Plus } from 'lucide-react';
+import { App as AntdApp, Empty, Input, Pagination, Select, Spin } from 'antd';
 import { useState } from 'react';
 
-import { useTaskConfigModal } from '@/components/crud-table/components/task-config-modal';
-import { STATUS_OPTIONS } from '@/components/crud-table/constants';
-import { ModalActionType } from '@/constants';
-import { refreshQuery } from '@/utils/query-client';
-
 import TaskCardItem from './components/task-card-item';
-import { TASK_LIST_KEY, useDeleteTask, useTaskList } from './hooks';
+import { STATUS_OPTIONS } from './constants';
+import { useDeleteTask, useTaskList } from './hooks';
 
 const TaskCard = () => {
   const { message, modal } = AntdApp.useApp();
@@ -19,25 +14,9 @@ const TaskCard = () => {
 
   const { data, isFetching } = useTaskList({ page, pageSize, name, status });
   const { mutateAsync: deleteTask } = useDeleteTask();
-  const { element: modalElement, setModalParams } = useTaskConfigModal({
-    handleOnFinish: () => refreshQuery(TASK_LIST_KEY),
-  });
 
   const tasks = data?.data ?? [];
   const total = data?.total ?? 0;
-
-  const handleCreate = () => {
-    setModalParams({ open: true, title: '新建任务', modalActionType: ModalActionType.CREATE });
-  };
-
-  const handleEdit = (task: FastAPI.Task) => {
-    setModalParams({
-      open: true,
-      title: '编辑任务',
-      modalActionType: ModalActionType.EDIT,
-      initialValues: task,
-    });
-  };
 
   const handleDelete = (task: FastAPI.Task) => {
     modal.confirm({
@@ -75,9 +54,6 @@ const TaskCard = () => {
               setPage(1);
             }}
           />
-          <Button type="primary" icon={<Plus className="size-4" />} onClick={handleCreate}>
-            新建任务
-          </Button>
         </div>
       </div>
 
@@ -87,7 +63,7 @@ const TaskCard = () => {
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {tasks.map((task) => (
-              <TaskCardItem key={task.id} task={task} onEdit={handleEdit} onDelete={handleDelete} />
+              <TaskCardItem key={task.id} task={task} onDelete={handleDelete} />
             ))}
           </div>
         )}
@@ -107,8 +83,6 @@ const TaskCard = () => {
           />
         </div>
       </Spin>
-
-      {modalElement}
     </div>
   );
 };

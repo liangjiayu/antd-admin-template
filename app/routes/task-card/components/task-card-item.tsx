@@ -1,8 +1,9 @@
 import dayjs from 'dayjs';
-import { CalendarDays, Pencil, Trash2, User } from 'lucide-react';
+import { CalendarDays, Trash2, User } from 'lucide-react';
 
-import { PRIORITY_MAP, STATUS_MAP } from '@/components/crud-table/constants';
 import { cn } from '@/utils';
+
+import { PRIORITY_MAP, STATUS_MAP } from '../constants';
 
 /** 状态圆点配色：待办灰 / 进行中蓝 / 已完成绿 */
 const STATUS_DOT: Record<FastAPI.Task['status'], string> = {
@@ -20,21 +21,13 @@ const PRIORITY_BADGE: Record<FastAPI.Task['priority'], string> = {
 
 type TaskCardItemProps = {
   task: FastAPI.Task;
-  onEdit: (task: FastAPI.Task) => void;
   onDelete: (task: FastAPI.Task) => void;
 };
 
-const TaskCardItem = ({ task, onEdit, onDelete }: TaskCardItemProps) => {
+const TaskCardItem = ({ task, onDelete }: TaskCardItemProps) => {
   return (
     <div className="group relative flex flex-col rounded-xl border border-border-base bg-bg-container p-4 transition hover:-translate-y-0.5 hover:shadow">
       <div className="absolute top-2.5 right-2.5 flex gap-0.5 opacity-0 transition group-hover:opacity-100">
-        <button
-          type="button"
-          onClick={() => onEdit(task)}
-          className="flex size-7 items-center justify-center rounded-md text-gray-400 transition hover:bg-fill-hover hover:text-gray-700 dark:hover:text-gray-200"
-        >
-          <Pencil className="size-3.5" />
-        </button>
         <button
           type="button"
           onClick={() => onDelete(task)}
