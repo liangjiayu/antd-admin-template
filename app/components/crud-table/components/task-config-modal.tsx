@@ -14,7 +14,7 @@ import { FastApiServices } from '@/services';
 
 import { PRIORITY_OPTIONS, STATUS_OPTIONS } from '../constants';
 
-export type TaskConfigModalProps = {
+type TaskConfigModalProps = {
   width?: number | string;
   title?: string;
   open: boolean;

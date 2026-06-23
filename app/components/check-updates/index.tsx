@@ -1,4 +1,5 @@
 import { App, Button } from 'antd';
+import type React from 'react';
 import { useEffect, useRef } from 'react';
 
 type CheckUpdatesProps = {
@@ -21,7 +22,7 @@ const CheckUpdates: React.FC<CheckUpdatesProps> = ({
   const lastVersionTag = useRef('');
   const timer = useRef<ReturnType<typeof setInterval>>(undefined);
 
-  function handleNotice(versionTag: string) {
+  const handleNotice = (versionTag: string) => {
     currentVersionTag.current = versionTag;
 
     notification.open({
@@ -53,9 +54,9 @@ const CheckUpdates: React.FC<CheckUpdatesProps> = ({
         </div>
       ),
     });
-  }
+  };
 
-  async function getVersionTag() {
+  const getVersionTag = async () => {
     try {
       if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
         return null;
@@ -71,9 +72,9 @@ const CheckUpdates: React.FC<CheckUpdatesProps> = ({
       console.error('Failed to fetch version tag');
       return null;
     }
-  }
+  };
 
-  async function checkForUpdates() {
+  const checkForUpdates = async () => {
     const versionTag = await getVersionTag();
     if (!versionTag) {
       return;
@@ -89,9 +90,9 @@ const CheckUpdates: React.FC<CheckUpdatesProps> = ({
       clearInterval(timer.current);
       handleNotice(versionTag);
     }
-  }
+  };
 
-  async function start() {
+  const start = async () => {
     if (import.meta.env.DEV) {
       return;
     }
@@ -100,18 +101,16 @@ const CheckUpdates: React.FC<CheckUpdatesProps> = ({
     }
 
     timer.current = setInterval(checkForUpdates, checkUpdatesInterval * 60 * 1000);
-  }
+  };
 
-  function stop() {
+  const stop = () => {
     clearInterval(timer.current);
     timer.current = undefined;
-  }
+  };
 
   useEffect(() => {
-    /* Mounted */
     start();
 
-    /* UnMounted */
     return () => {
       stop();
     };
