@@ -24,17 +24,14 @@ import {
 
 import type { MenuGroup, TopNavItem } from './types';
 
-/** 顶部水平导航 mock 数据 */
+/** 顶部水平导航 */
 export const topNavItems: TopNavItem[] = [
   { key: 'model', name: '模型', path: '/' },
   { key: 'app', name: '应用', path: '/app' },
   { key: 'docs', name: '文档', path: '/docs' },
 ];
 
-/**
- * 各顶部分区对应的侧栏分组菜单 mock 数据，按 navKey 索引
- * 参考阿里云百炼模型平台，路径为 mock，部分无对应真实页面
- */
+/** 顶部导航 key 到侧栏分组菜单的映射 */
 export const sideMenuGroupsMap: Record<string, MenuGroup[]> = {
   model: [
     {
@@ -104,7 +101,7 @@ export const sideMenuGroupsMap: Record<string, MenuGroup[]> = {
   ],
 };
 
-/** 根据当前路径定位所属顶部分区 key，未命中则回退到首个分区（模型） */
+/** 根据当前路径反查所属顶部导航 key，未命中则回退到首个导航 */
 export function findActiveNavKey(pathname: string): string {
   const matched = topNavItems.find((nav) =>
     sideMenuGroupsMap[nav.key]?.some((group) => group.items.some((item) => item.path === pathname)),
