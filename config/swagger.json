@@ -1,590 +1,310 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "Ant Design Pro",
-    "version": "1.0.0"
-  },
-  "servers": [
-    {
-      "url": "http://localhost:8000/"
-    },
-    {
-      "url": "https://localhost:8000/"
-    }
-  ],
-  "paths": {
-    "/api/currentUser": {
-      "get": {
-        "tags": ["api"],
-        "description": "获取当前的用户",
-        "operationId": "currentUser",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CurrentUser"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "x-swagger-router-controller": "api"
-    },
-    "/api/login/captcha": {
-      "post": {
-        "description": "发送验证码",
-        "operationId": "getFakeCaptcha",
-        "tags": ["login"],
-        "parameters": [
-          {
-            "name": "phone",
-            "in": "query",
-            "description": "手机号",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FakeCaptcha"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/login/outLogin": {
-      "post": {
-        "description": "登录接口",
-        "operationId": "outLogin",
-        "tags": ["login"],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "x-swagger-router-controller": "api"
-    },
-    "/api/login/account": {
-      "post": {
-        "tags": ["login"],
-        "description": "登录接口",
-        "operationId": "login",
-        "requestBody": {
-          "description": "登录系统",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginParams"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LoginResult"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      },
-      "x-swagger-router-controller": "api"
-    },
-    "/api/notices": {
-      "summary": "getNotices",
-      "description": "NoticeIconItem",
-      "get": {
-        "tags": ["api"],
-        "operationId": "getNotices",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoticeIconList"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/rule": {
-      "get": {
-        "tags": ["rule"],
-        "description": "获取规则列表",
-        "operationId": "rule",
-        "parameters": [
-          {
-            "name": "current",
-            "in": "query",
-            "description": "当前的页码",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "页面的容量",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RuleList"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": ["rule"],
-        "description": "新建规则",
-        "operationId": "addRule",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RuleListItem"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": ["rule"],
-        "description": "新建规则",
-        "operationId": "updateRule",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RuleListItem"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": ["rule"],
-        "description": "删除规则",
-        "operationId": "removeRule",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "x-swagger-router-controller": "api"
-    },
-    "/swagger": {
-      "x-swagger-pipe": "swagger_raw"
-    }
-  },
+  "openapi": "3.0.0",
+  "info": { "title": "Fast API Mock", "version": "1.0.0", "description": "Mock API 服务" },
   "components": {
     "schemas": {
       "CurrentUser": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string"
-          },
+          "name": { "type": "string", "description": "用户姓名", "example": "Serati Ma" },
           "avatar": {
-            "type": "string"
+            "type": "string",
+            "format": "uri",
+            "description": "头像",
+            "example": "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
           },
-          "userid": {
-            "type": "string"
-          },
+          "userid": { "type": "string", "description": "用户ID", "example": "00000001" },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email",
+            "description": "邮箱",
+            "example": "antdesign@alipay.com"
           },
           "signature": {
-            "type": "string"
+            "type": "string",
+            "description": "个性签名",
+            "example": "海纳百川，有容乃大"
           },
-          "title": {
-            "type": "string"
-          },
+          "title": { "type": "string", "description": "职位", "example": "交互专家" },
           "group": {
-            "type": "string"
+            "type": "string",
+            "description": "所属部门",
+            "example": "蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED"
           },
-          "tags": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "key": {
-                  "type": "string"
-                },
-                "label": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "notifyCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "unreadCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "country": {
-            "type": "string"
-          },
-          "access": {
-            "type": "string"
-          },
-          "geographic": {
-            "type": "object",
-            "properties": {
-              "province": {
-                "type": "object",
-                "properties": {
-                  "label": {
-                    "type": "string"
-                  },
-                  "key": {
-                    "type": "string"
-                  }
-                }
-              },
-              "city": {
-                "type": "object",
-                "properties": {
-                  "label": {
-                    "type": "string"
-                  },
-                  "key": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "address": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          }
-        }
+          "notifyCount": { "type": "number", "description": "通知数量", "example": 12 },
+          "unreadCount": { "type": "number", "description": "未读消息数量", "example": 11 },
+          "country": { "type": "string", "description": "国家", "example": "China" },
+          "address": { "type": "string", "description": "地址", "example": "西湖区工专路 77 号" },
+          "phone": { "type": "string", "description": "联系电话", "example": "0752-268888888" }
+        },
+        "required": [
+          "name",
+          "avatar",
+          "userid",
+          "email",
+          "signature",
+          "title",
+          "group",
+          "notifyCount",
+          "unreadCount",
+          "country",
+          "address",
+          "phone"
+        ]
       },
-      "LoginResult": {
+      "Task": {
         "type": "object",
         "properties": {
+          "id": { "type": "number", "description": "任务ID", "example": 1 },
+          "name": { "type": "string", "description": "任务名称", "example": "完成首页设计稿" },
           "status": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "currentAuthority": {
-            "type": "string"
-          }
-        }
-      },
-      "PageParams": {
-        "type": "object",
-        "properties": {
-          "current": {
-            "type": "number"
-          },
-          "pageSize": {
-            "type": "number"
-          }
-        }
-      },
-      "RuleListItem": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "disabled": {
-            "type": "boolean"
-          },
-          "href": {
-            "type": "string"
-          },
-          "avatar": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "owner": {
-            "type": "string"
-          },
-          "desc": {
-            "type": "string"
-          },
-          "callNo": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "updatedAt": {
             "type": "string",
-            "format": "datetime"
+            "enum": ["todo", "progress", "done"],
+            "description": "任务状态",
+            "example": "todo"
           },
-          "createdAt": {
+          "priority": {
             "type": "string",
-            "format": "datetime"
+            "enum": ["low", "medium", "high"],
+            "description": "优先级",
+            "example": "medium"
           },
-          "progress": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "RuleList": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RuleListItem"
-            }
-          },
-          "total": {
-            "type": "integer",
-            "description": "列表的内容总数",
-            "format": "int32"
-          },
-          "success": {
-            "type": "boolean"
-          }
-        }
-      },
-      "FakeCaptcha": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
-            "type": "string"
-          }
-        }
-      },
-      "LoginParams": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "autoLogin": {
-            "type": "boolean"
-          },
-          "type": {
-            "type": "string"
-          }
-        }
-      },
-      "ErrorResponse": {
-        "required": ["errorCode"],
-        "type": "object",
-        "properties": {
-          "errorCode": {
-            "type": "string",
-            "description": "业务约定的错误码"
-          },
-          "errorMessage": {
-            "type": "string",
-            "description": "业务上的错误信息"
-          },
-          "success": {
-            "type": "boolean",
-            "description": "业务上的请求是否成功"
-          }
-        }
-      },
-      "NoticeIconList": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NoticeIconItem"
-            }
-          },
-          "total": {
-            "type": "integer",
-            "description": "列表的内容总数",
-            "format": "int32"
-          },
-          "success": {
-            "type": "boolean"
-          }
-        }
-      },
-      "NoticeIconItemType": {
-        "title": "NoticeIconItemType",
-        "description": "已读未读列表的枚举",
-        "type": "string",
-        "properties": {},
-        "enum": ["notification", "message", "event"]
-      },
-      "NoticeIconItem": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "extra": {
-            "type": "string",
-            "format": "any"
-          },
-          "key": { "type": "string" },
-          "read": {
-            "type": "boolean"
-          },
-          "avatar": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "datetime": {
-            "type": "string",
-            "format": "date"
-          },
+          "assignee": { "type": "string", "description": "负责人", "example": "张三" },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "任务描述",
+            "example": "根据产品需求完成首页UI设计"
           },
-          "type": {
-            "extensions": {
-              "x-is-enum": true
+          "createdAt": { "type": "string", "description": "创建时间", "example": "2025-06-01" },
+          "deadline": { "type": "string", "description": "截止时间", "example": "2025-06-15" }
+        },
+        "required": [
+          "id",
+          "name",
+          "status",
+          "priority",
+          "assignee",
+          "description",
+          "createdAt",
+          "deadline"
+        ]
+      },
+      "TaskListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Task" },
+            "description": "数据列表"
+          },
+          "total": { "type": "number", "description": "总数", "example": 100 },
+          "page": { "type": "number", "description": "当前页码", "example": 1 },
+          "pageSize": { "type": "number", "description": "每页数量", "example": 10 }
+        },
+        "required": ["data", "total", "page", "pageSize"]
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean", "description": "是否成功", "example": true },
+          "message": { "type": "string", "description": "提示信息", "example": "操作成功" }
+        },
+        "required": ["success", "message"]
+      },
+      "CreateTask": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "description": "任务名称", "example": "新建任务" },
+          "status": {
+            "type": "string",
+            "enum": ["todo", "progress", "done"],
+            "description": "任务状态",
+            "example": "todo"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "description": "优先级",
+            "example": "medium"
+          },
+          "assignee": { "type": "string", "description": "负责人", "example": "张三" },
+          "description": { "type": "string", "description": "任务描述", "example": "任务描述内容" },
+          "deadline": { "type": "string", "description": "截止时间", "example": "2025-07-01" }
+        },
+        "required": ["name", "status", "priority", "assignee", "description", "deadline"]
+      },
+      "UpdateTask": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "description": "任务名称", "example": "新建任务" },
+          "status": {
+            "type": "string",
+            "enum": ["todo", "progress", "done"],
+            "description": "任务状态",
+            "example": "todo"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "description": "优先级",
+            "example": "medium"
+          },
+          "assignee": { "type": "string", "description": "负责人", "example": "张三" },
+          "description": { "type": "string", "description": "任务描述", "example": "任务描述内容" },
+          "deadline": { "type": "string", "description": "截止时间", "example": "2025-07-01" }
+        }
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/api/currentUser": {
+      "get": {
+        "operationId": "getCurrentUser",
+        "tags": ["User"],
+        "summary": "获取当前用户信息",
+        "responses": {
+          "200": {
+            "description": "当前用户信息",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/CurrentUser" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks": {
+      "get": {
+        "operationId": "getTasks",
+        "tags": ["Task"],
+        "summary": "获取任务列表",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "default": 1,
+              "description": "页码",
+              "example": 1
             },
-            "$ref": "#/components/schemas/NoticeIconItemType"
+            "required": false,
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "default": 10,
+              "description": "每页数量",
+              "example": 10
+            },
+            "required": false,
+            "name": "pageSize",
+            "in": "query"
+          },
+          {
+            "schema": { "type": "string", "description": "按任务名称搜索", "example": "设计" },
+            "required": false,
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["todo", "progress", "done"],
+              "description": "按状态筛选",
+              "example": "todo"
+            },
+            "required": false,
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["low", "medium", "high"],
+              "description": "按优先级筛选",
+              "example": "high"
+            },
+            "required": false,
+            "name": "priority",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "任务分页列表",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/TaskListResponse" } }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTask",
+        "tags": ["Task"],
+        "summary": "创建任务",
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/CreateTask" } }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "创建成功",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/SuccessResponse" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}": {
+      "put": {
+        "operationId": "updateTask",
+        "tags": ["Task"],
+        "summary": "编辑任务",
+        "parameters": [
+          {
+            "schema": { "type": "number", "nullable": true, "description": "任务ID", "example": 1 },
+            "required": false,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/UpdateTask" } }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "更新成功",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/SuccessResponse" } }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteTask",
+        "tags": ["Task"],
+        "summary": "删除任务",
+        "parameters": [
+          {
+            "schema": { "type": "number", "nullable": true, "description": "任务ID", "example": 1 },
+            "required": false,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "删除成功",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/SuccessResponse" } }
+            }
           }
         }
       }
