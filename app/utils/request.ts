@@ -10,12 +10,6 @@ const instance = axios.create({
 });
 
 /** 请求拦截器 */
-// instance.interceptors.request.use(
-//   (config) => {},
-//   (error) => {}
-// );
-
-/** 兼容文件上传 */
 instance.interceptors.request.use((config) => {
   if (config.data instanceof FormData) {
     delete config.headers['Content-Type'];
